@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta
+      name="description"
+      content="An application for taking the guess work out of dividend calculations."
+    />
+    <link rel="stylesheet" href="./src/css/styles.css" />
+    <script type="module" src="./src/js/index.js" defer></script>
+    <title>DiviDont</title>
+  </head>
+  <body>
+    <header class="header__main">
+      <h1>DiviDont</h1>
+      <p>Dividends are the worst.</p>
+    </header>
+    <main class="main">
+      <form id="entry">
+        <label for="audited-premium">Audited Premium: </label>
+        <input
+          type="number"
+          min="1"
+          step="any"
+          name="audited-premium"
+          id="audited-premium"
+          value="0"
+        />
+        <label for="dividend-factor">Dividend Factor: </label>
+        <input
+          type="number"
+          name="dividend-factor"
+          id="dividend-factor"
+          value="0"
+        />
+        <label for="emod-factor">Emod Factor: </label>
+        <input type="number" name="emod-factor" id="emod-factor" value="0" />
+        <label for="excluded-surcharges">Excluded Surcharge: </label>
+        <div id="surcharges"></div>
+        <button id="add-surcharge" class="btn btn__round">+</button>
+      </form>
+      <section id="results">
+        <p class="display" id="display--dividend">$0</p>
+      </section>
+    </main>
+  </body>
+</html>
