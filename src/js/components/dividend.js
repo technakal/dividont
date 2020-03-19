@@ -5,12 +5,15 @@
  * @param {number} emodFactor The emod factor. Should be a decimal.
  * @param {number} surchargeTotal The total value of all surcharge exceptions.
  */
-const calculateDividend = (
+export const calculateDividend = (
   auditedPremium,
   dividendFactor,
   emodFactor,
   surchargeTotal = 0
 ) => {
+  console.log(getFinalEmodFactor(emodFactor));
+  console.log(dividendFactor * getFinalEmodFactor(emodFactor));
+  console.log(auditedPremium - surchargeTotal);
   return Math.round(
     dividendFactor *
       getFinalEmodFactor(emodFactor) *
@@ -23,7 +26,5 @@ const calculateDividend = (
  * @param {*} emodFactor
  * @returns The final emod factor, to use in the dividend calculation.
  */
-const getFinalEmodFactor = emodFactor =>
-  1 - emodFactor <= 0.3 ? 1 - emodFactor : 0.3;
-
-export { calculateDividend, getFinalEmodFactor };
+export const getFinalEmodFactor = emodFactor =>
+  1 - emodFactor <= 0.3 && 1 - emodFactor > 0 ? 1 - emodFactor : 0.3;

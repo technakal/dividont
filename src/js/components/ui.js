@@ -3,7 +3,7 @@
  * @param {string} formElemId The id of the element to be replaced.
  * @param {string} updatedElem Template literal describing the replacement element.
  */
-const replaceElement = (elemId, updatedElem) => {
+export const replaceElement = (elemId, updatedElem) => {
   return (document.querySelector(`#${elemId}`).innerHTML = updatedElem);
 };
 
@@ -12,8 +12,23 @@ const replaceElement = (elemId, updatedElem) => {
  * @param {string} displayId The id of the display item to update
  * @param {string} newText The new text value to dispaly on the output display
  */
-const updateOutputDisplay = (displayId, newText) => {
-  return (document.querySelector(`#${displayId}`).textContent = newText);
+export const updateOutputDisplay = (displayId, newText) => {
+  const display = document.querySelector(`#${displayId}`);
+  let scale = 1.0;
+  if (Number(newText) > 10000) scale = 1.35;
+  if (Number(newText) < 1000) scale = 0.65;
+  applyRandomTransform(display, scale);
+  return (display.textContent = `$${newText}`);
+};
+
+export const applyRandomTransform = (elem, scale = 1) => {
+  const signs = ['', '-'];
+  const randVal = Math.floor(Math.random() * 10 + 1);
+  const randSign = signs[Math.floor(Math.random() * 2)];
+  return elem.setAttribute(
+    'style',
+    `transform: rotate(${randSign}${randVal}deg) scale(${scale})`
+  );
 };
 
 /**
@@ -22,7 +37,7 @@ const updateOutputDisplay = (displayId, newText) => {
  * @param {string} className The name of the class to add to the element.
  * @returns Updated element.
  */
-const addClass = (elem, className) => {
+export const addClass = (elem, className) => {
   elem.classList.add(className);
   return elem;
 };
@@ -33,7 +48,7 @@ const addClass = (elem, className) => {
  * @param {string} className The name of the class to remove from the element.
  * @returns Updated element.
  */
-const removeClass = (elem, className) => {
+export const removeClass = (elem, className) => {
   try {
     elem.classList.remove(className);
   } catch (err) {
@@ -41,5 +56,3 @@ const removeClass = (elem, className) => {
   }
   return elem;
 };
-
-export { replaceElement, updateOutputDisplay, addClass, removeClass };

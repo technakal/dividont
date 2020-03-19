@@ -4,12 +4,45 @@
   box-sizing: border-box;
 }
 
+input {
+  border: 0;
+  border-bottom: 1px solid #ddd;
+  border-radius: 5px 5px 0 0;
+  font-size: 16px;
+  padding: 0.25rem;
+  transition: all 0.2s ease;
+}
+
+input:focus {
+  border: 0;
+  border-bottom: 1px solid magenta;
+  outline-width: 0;
+  transition: all 0.2s ease;
+}
+
+.wrapper {
+  font-family: Cambay, Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.header__main {
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  text-align: center;
+}
+
 .main {
   align-content: center;
   display: grid;
   grid-gap: 15px;
-  grid-template-areas: 'e r';
-  grid-template-columns: 2fr 1fr;
+  grid-template-areas:
+    'e r'
+    'd d';
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto;
   justify-items: start;
 }
@@ -19,10 +52,21 @@
   grid-gap: 7px;
   grid-template-columns: 1fr;
   grid-area: e;
+  width: 80%;
 }
 
 #results {
+  align-self: center;
   grid-area: r;
+  justify-self: center;
+}
+
+#display--dividend {
+  font-size: 4rem;
+}
+
+#display--detail {
+  grid-area: d;
 }
 
 #surcharges {
@@ -37,13 +81,23 @@
   padding: 0.5rem;
 }
 
+.btn:hover {
+  cursor: pointer;
+}
+
 .btn__round {
+  align-items: center;
+  background: magenta;
   border: 2px solid white;
   border-radius: 50%;
+  color: white;
+  display: flex;
+  flex-flow: row wrap;
   font-size: 20px;
-  height: 40px;
+  height: 50px;
+  justify-content: center;
   text-align: center;
-  width: 40px;
+  width: 50px;
 }
 
 .btn__delete {

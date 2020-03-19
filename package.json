@@ -4,7 +4,8 @@
   "description": "An application for calculating the dividend value. Because dividend is the worst.",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "tsc": "tsc"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,8 @@
     "@babel/preset-env": "^7.8.4",
     "babel-jest": "^25.1.0",
     "jest": "^25.1.0"
+  },
+  "dependencies": {
+    "typescript": "^3.7.5"
   }
 }

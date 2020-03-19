@@ -1,29 +1,22 @@
-import {
-  replaceElement,
-  addClass,
-  removeClass,
-  updateOutputDisplay,
-} from './components/ui.js';
-
-import {
-  createSurchargeFields,
-  addSurchargeEventHandlers,
-  deleteSurchargeField,
-  getSurchargeTotal,
-} from './components/surcharge.js';
-
-import { calculateDividend } from './components/dividend.js';
+import * as ui from './components/ui.js';
+import * as surcharge from './components/surcharge.js';
+import * as div from './components/dividend.js';
 
 const addSurchargeField = e => {
   e.preventDefault();
   const surchargeCount = surchargeContainer.querySelectorAll('input').length;
-  let updatedInputs = createSurchargeFields(surchargeContainer, surchargeCount);
-  replaceElement('surcharges', updatedInputs);
-  addSurchargeEventHandlers(
+  let updatedInputs = surcharge.createSurchargeFields(
+    surchargeContainer,
+    surchargeCount
+  );
+  ui.replaceElement('surcharges', updatedInputs);
+  surcharge.addSurchargeEventHandlers(
     surchargeContainer,
     updateDividend,
-    deleteSurchargeField
+    surcharge.deleteSurchargeField
   );
+  document.querySelector(`#surcharge-${surchargeCount}`).select();
+  ui.applyRandomTransform(document.querySelector('#display--dividend'));
 };
 
 const getInputValues = () => {
@@ -33,7 +26,7 @@ const getInputValues = () => {
     auditedPremium: document.querySelector('#audited-premium').value || 0,
     dividendFactor: document.querySelector('#dividend-factor').value || 0,
     emodFactor: document.querySelector('#emod-factor').value || 0,
-    surchargeTotal: getSurchargeTotal(surcharges),
+    surchargeTotal: surcharge.getSurchargeTotal(surcharges),
   };
 };
 
@@ -44,9 +37,9 @@ const updateDividend = () => {
     emodFactor,
     surchargeTotal,
   } = getInputValues();
-  updateOutputDisplay(
+  ui.updateOutputDisplay(
     'display--dividend',
-    calculateDividend(
+    div.calculateDividend(
       auditedPremium,
       dividendFactor,
       emodFactor,

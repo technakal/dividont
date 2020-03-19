@@ -4,7 +4,7 @@
  * @param {number} surchargeCount The number of surcharge fields already in existence.
  * @returns Template literal with the surcharge fields.
  */
-const createSurchargeFields = (container, surchargeCount = 0) => {
+export const createSurchargeFields = (container, surchargeCount = 0) => {
   let updatedInputs = replicateSurchargeValues(container)
     .map(
       item =>
@@ -20,7 +20,7 @@ const createSurchargeFields = (container, surchargeCount = 0) => {
  * @param {HTMLElement} container The container in which the surcharge fields live.
  * @returns Array of objects with the ids and values of all existing surcharge fields.
  */
-const replicateSurchargeValues = container => {
+export const replicateSurchargeValues = container => {
   const surchargeFields = container.querySelectorAll('input');
   const currentValues = [];
   surchargeFields.forEach(field =>
@@ -36,7 +36,7 @@ const replicateSurchargeValues = container => {
  * Makes sure the surcharge fields perform the necessary actions.
  * @param {HTMLElement} container Adds event handlers to all surcharge fields.
  */
-const addSurchargeEventHandlers = (container, calculateFn, deleteFn) => {
+export const addSurchargeEventHandlers = (container, calculateFn, deleteFn) => {
   container.querySelectorAll('input').forEach(input => {
     input.addEventListener('click', e => e.target.select());
     input.addEventListener('blur', e => calculateFn(e));
@@ -48,22 +48,14 @@ const addSurchargeEventHandlers = (container, calculateFn, deleteFn) => {
     );
 };
 
-const deleteSurchargeField = (e, calculateFn) => {
+export const deleteSurchargeField = (e, calculateFn) => {
   document.querySelector(`#${e.target.dataset.input}`).remove();
   e.target.remove();
   return calculateFn();
 };
 
-const getSurchargeTotal = surcharges => {
+export const getSurchargeTotal = surcharges => {
   let total = 0;
   surcharges.forEach(surcharge => (total += Number(surcharge.value)));
   return total;
-};
-
-export {
-  addSurchargeEventHandlers,
-  createSurchargeFields,
-  deleteSurchargeField,
-  getSurchargeTotal,
-  replicateSurchargeValues,
 };
