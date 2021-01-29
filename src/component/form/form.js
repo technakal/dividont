@@ -1,9 +1,8 @@
 import m from 'mithril';
 import flyd from 'flyd';
-import formOnChange from 'component/form/form.on.change';
-import { map } from 'ramda';
+import formOnChange from '@component/form/form.on.change';
 
-export default ({ State, onsubmit, oncancel }) => {
+export default ({ _s$, State, onsubmit, oncancel }) => {
   const form$ = flyd.stream();
   const errors$ = flyd.stream();
 
@@ -27,17 +26,14 @@ export default ({ State, onsubmit, oncancel }) => {
   };
 
   return {
-    view: ({ attrs: { form } }) =>
+    view: ({ attrs: { form, ...attrs } }) =>
       m(
         'form',
         {
           className:
             'container flex flex-col content-center justify-evenly max-w-md mb-10 mx-auto',
         },
-        [
-          form(onChange),
-          m('div', { onsubmit: onSubmit, oncancel: onCancel }, 'BUTTONS TODO'),
-        ]
+        m(form, { _s$, onchange: onChange, form$, errors$, ...attrs })
       ),
   };
 };

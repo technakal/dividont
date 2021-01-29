@@ -1,5 +1,5 @@
 import m from 'mithril';
-import title from 'component/title/title';
+import title from '@component/title/title';
 
 export default {
   view: vnode =>

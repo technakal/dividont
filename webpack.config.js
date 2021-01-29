@@ -33,6 +33,7 @@ module.exports = {
     port: 3001,
   },
   entry: path.join(__dirname, 'src', 'index.js'),
+  mode: 'development',
   module: { rules },
   output: {
     filename: 'bundle.js',
@@ -45,10 +46,12 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      app: path.resolve(__dirname, './src'),
-      component: path.resolve(__dirname, './src/component'),
-      container: path.resolve(__dirname, './src/container'),
-      service: path.resolve(__dirname, './src/service'),
+      '@app': path.resolve(__dirname, './src'),
+      '@component': path.resolve(__dirname, './src/component'),
+      '@container': path.resolve(__dirname, './src/container'),
+      '@service': path.resolve(__dirname, './src/service'),
+      '@widget': path.resolve(__dirname, './src/widget'),
+      '@util': path.resolve(__dirname, './src/util'),
     },
   },
 };

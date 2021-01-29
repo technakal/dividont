@@ -1,6 +1,6 @@
-// import * as ui from 'component/ui';
-// import * as surcharge from 'component/surcharge';
-// import * as div from 'component/dividend';
+// import * as ui from '@component/ui';
+// import * as surcharge from '@component/surcharge';
+// import * as div from '@component/dividend';
 
 // const addSurchargeField = e => {
 //   e.preventDefault();
@@ -56,9 +56,9 @@
 // });
 
 // addSurchargeElem.addEventListener('click', e => addSurchargeField(e));
-import 'app/styles.css';
+import '@app/styles.css';
 import m from 'mithril';
-import app from 'app/app';
+import app from '@app/app';
 
 const root = document.querySelector('#root');
 m.mount(root, app);

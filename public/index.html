@@ -16,35 +16,5 @@
   </head>
   <body>
     <div id="root"></div>
-      <main class="main">
-        <form id="entry">
-          <label for="audited-premium">Audited Premium: </label>
-          <input
-            type="number"
-            min="1"
-            step="any"
-            name="audited-premium"
-            id="audited-premium"
-            value="0"
-          />
-          <label for="dividend-factor">Dividend Factor: </label>
-          <input
-            type="number"
-            name="dividend-factor"
-            id="dividend-factor"
-            value="0"
-          />
-          <label for="emod-factor">Emod Factor: </label>
-          <input type="number" name="emod-factor" id="emod-factor" value="0" />
-          <label for="excluded-surcharges">Excluded Surcharge: </label>
-          <div id="surcharges"></div>
-          <button id="add-surcharge" class="btn btn__round">+</button>
-        </form>
-        <section id="results">
-          <p class="display" id="display--dividend">$0</p>
-        </section>
-        <section id="display--detail"></section>
-      </main>
-    </div>
   </body>
 </html>

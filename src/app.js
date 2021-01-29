@@ -1,18 +1,14 @@
+import form from '@component/form/form';
+import layout from '@container/layout';
 import m from 'mithril';
-import { curry, pathOr } from 'ramda';
-import layout from 'container/layout';
-import form from 'component/form/form';
-import input, { numericInput } from 'component/form/input/input';
-import inputGroup from 'component/form/input/inputGroup';
+import _s$, { State } from '@service/state';
+import dividendForm from '@widget/dividendForm';
+import dividendResult from '@widget/dividendResult';
 
 export default () => {
-  let _s = {};
-  const State = curry((prop, val) => (_s[prop] = val));
-
-  const dividendForm = form({
+  const _form = form({
+    _s$,
     State,
-    oncancel: console.log,
-    onsubmit: console.log,
   });
 
   return {
@@ -20,42 +16,12 @@ export default () => {
       m(layout, [
         m(
           'main',
-          m(dividendForm, {
-            form: onchange => [
-              m(inputGroup, {
-                component: numericInput,
-                defaultValue: pathOr(0, ['form', 'premium'], _s),
-                error: pathOr('', ['errors', 'premium'], _s),
-                id: 'premium',
-                label: 'Audited Premium',
-                min: 1,
-                step: 'any',
-                onblur: onchange,
-                required: true,
-              }),
-              m(inputGroup, {
-                component: numericInput,
-                defaultValue: pathOr(0, ['form', 'divFactor'], _s),
-                error: pathOr('', ['errors', 'divFactor'], _s),
-                id: 'divfactor',
-                label: 'Dividend Factor',
-                onblur: onchange,
-                required: true,
-              }),
-              m(inputGroup, {
-                component: numericInput,
-                defaultValue: pathOr(0, ['form', 'emodFactor'], _s),
-                error: pathOr('', ['errors', 'emodFactor'], _s),
-                id: 'emodFactor',
-                label: 'Emod Factor',
-                onblur: onchange,
-                required: true,
-              }),
-            ],
+          { className: 'h-screen' },
+          m(_form, {
+            form: dividendForm,
           })
         ),
-        m('pre', JSON.stringify(_s, null, 2)),
-        // result
+        m(dividendResult, { dividend: _s$().dividend }),
       ]),
   };
 };

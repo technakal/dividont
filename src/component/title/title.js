@@ -5,7 +5,7 @@ const title = {
     m(
       'h1',
       {
-        className: 'antialiased font-semibold font-serif text-3xl',
+        className: 'antialiased font-semibold font-serif pt-10 text-4xl',
         ...vnode.attrs,
       },
       vnode.children

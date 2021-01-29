@@ -1,6 +1,6 @@
 import m from 'mithril';
-import header from 'container/header';
-import footer from 'container/footer';
+import header from '@container/header';
+import footer from '@container/footer';
 
 export default {
   view: vnode =>

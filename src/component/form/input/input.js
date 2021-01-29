@@ -1,10 +1,12 @@
 import m from 'mithril';
+import { trim } from 'ramda';
 
 const input = {
-  view: vnode =>
+  view: ({ attrs: { className = '', ...attrs }, ...vnode }) =>
     m('input', {
-      className: 'border border-gray-500 rounded p-2',
-      ...vnode.attrs,
+      className: trim(`border border-gray-500 rounded p-2 ${className}`),
+      onfocus: () => document.getElementById(attrs.id).select(),
+      ...attrs,
     }),
 };
 
