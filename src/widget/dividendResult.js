@@ -10,7 +10,7 @@ export default {
         isValue,
         always(
           m(
-            'div',
+            'p',
             {
               className: `${
                 gt(0, dividend) ? 'text-red-500' : ''
@@ -20,6 +20,19 @@ export default {
           )
         ),
       ],
-      [T, always(null)],
+      [
+        T,
+        always(
+          m(
+            'p',
+            {
+              className: `${
+                gt(0, dividend) ? 'text-red-500' : ''
+              } text-4xl text-center`,
+            },
+            `DON'T`
+          )
+        ),
+      ],
     ])(dividend),
 };

@@ -38,6 +38,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, './dist'),
+    publicPath: '/dividont/',
   },
   plugins: [
     new HTMLPlugin({

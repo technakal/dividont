@@ -1,10 +1,13 @@
 import m from 'mithril';
-
+import { trim } from 'ramda';
 export default {
-  view: vnode =>
+  view: ({ attrs: { className = '', ...attrs }, ...vnode }) =>
     m(
       'label',
-      { className: 'font-bold self-start text-sm', ...vnode.attrs },
+      {
+        className: trim(`font-bold self-start text-sm ${className}`),
+        ...attrs,
+      },
       vnode.children
     ),
 };

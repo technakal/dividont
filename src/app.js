@@ -12,16 +12,14 @@ export default () => {
   });
 
   return {
-    view: vnode =>
+    view: () =>
       m(layout, [
-        m(
-          'main',
-          { className: 'h-screen' },
+        m('main', { className: 'pb-8 px-8 md:px-3' }, [
           m(_form, {
             form: dividendForm,
-          })
-        ),
-        m(dividendResult, { dividend: _s$().dividend }),
+          }),
+          m(dividendResult, { dividend: _s$().dividend }),
+        ]),
       ]),
   };
 };

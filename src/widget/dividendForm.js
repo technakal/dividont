@@ -25,6 +25,13 @@ import {
 import { v4 as uuid } from 'uuid';
 import dividend, { emod } from '@service/dividend';
 
+const hasSurcharges = pipe(
+  s => s(),
+  pathOr([], ['form', 'surcharges']),
+  length,
+  lt(0)
+);
+
 export default ({ attrs: { _s$, form$, errors$, ...attrs }, ...vnode }) => {
   const onsurchargechange = e => {
     const { target } = e;
@@ -101,38 +108,45 @@ export default ({ attrs: { _s$, form$, errors$, ...attrs }, ...vnode }) => {
         required: true,
         step: 'any',
       }),
-      [
-        map(
-          i =>
-            m(
-              'div',
-              {
-                className: 'flex flex-row',
-                key: pipe(keys, head)(i),
-              },
-              [
-                m(numericInput, {
-                  className: 'flex-auto mb-2',
-                  id: pipe(keys, head)(i),
-                  placeholder: pipe(values, head)(i),
-                  onblur: onsurchargechange,
-                }),
+      hasSurcharges(_s$)
+        ? [
+            m(label, { className: 'mt-6' }, 'Surcharge Exceptions'),
+            map(
+              i =>
                 m(
-                  inlineButton,
+                  'div',
                   {
-                    className: 'self-center',
-                    onclick: () => ondeletesurcharge(pipe(keys, head)(i)),
+                    className: 'flex flex-row',
+                    key: pipe(keys, head)(i),
                   },
-                  m(deleteIcon, { className: 'text-3xl text-pink-600' })
+                  [
+                    m(numericInput, {
+                      className: 'flex-auto mb-2',
+                      id: pipe(keys, head)(i),
+                      placeholder: pipe(values, head)(i),
+                      onblur: onsurchargechange,
+                    }),
+                    m(
+                      inlineButton,
+                      {
+                        className: 'self-center',
+                        onclick: () => ondeletesurcharge(pipe(keys, head)(i)),
+                      },
+                      m(deleteIcon, { className: 'text-3xl text-pink-600' })
+                    ),
+                  ]
                 ),
-              ]
+              pipe(s => s(), pathOr([], ['form', 'surcharges']))(_s$)
             ),
-          pipe(s => s(), pathOr([], ['form', 'surcharges']))(_s$)
-        ),
-      ],
+          ]
+        : m(
+            label,
+            { className: 'mt-6 self-center' },
+            'Add Surcharge Exception'
+          ),
       m(
         roundedButton,
-        { className: 'mt-4', onclick: onaddsurcharge },
+        { className: 'mt-4 self-center', onclick: onaddsurcharge },
         m(plusIcon)
       ),
     ],

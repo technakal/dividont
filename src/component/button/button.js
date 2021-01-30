@@ -10,7 +10,7 @@ const button = {
     m(
       'button',
       {
-        className: `bg-pink-600 hover:bg-pink-400 focus:outline-none focus:ring-offset-0 ring ring-pink-600 ring-offset-2 text-white ${className}`,
+        className: `bg-pink-600 hover:bg-pink-400 focus:outline-none focus:ring-offset-0 focus:ring-pink-400 ring ring-pink-600 ring-offset-2 text-white ${className}`,
         type,
         ...attrs,
       },
