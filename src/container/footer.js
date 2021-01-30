@@ -7,7 +7,7 @@ export default {
       'footer',
       {
         class:
-          'absolute bg-white border-box bottom-0 flex flex-col items-center justify-center pb-6 pt-4 px-2 text-center w-full',
+          'bg-white border-box bottom-0 flex flex-col items-center justify-center pb-6 pt-4 px-2 sticky text-center w-full',
       },
       [
         m('p', { className: 'flex flex-row items-center pb-2' }, [
